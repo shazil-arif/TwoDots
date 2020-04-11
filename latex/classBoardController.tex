@@ -1,0 +1,181 @@
+\hypertarget{classBoardController}{}\doxysection{Board\+Controller Class Reference}
+\label{classBoardController}\index{BoardController@{BoardController}}
+
+
+controller for \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} and a \mbox{\hyperlink{classBoardView}{Board\+View}} object  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoardController_a3513a0c88efb2a9a960cbd7785171dde}{Board\+Controller}} (\mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} model, \mbox{\hyperlink{classBoardView}{Board\+View}} view)
+\begin{DoxyCompactList}\small\item\em constructor for \mbox{\hyperlink{classBoardController}{Board\+Controller}} \end{DoxyCompactList}\item 
+\mbox{\hyperlink{enumColor}{Color}} \mbox{\hyperlink{classBoardController_a75c1a4d2b550e3677ead994d968472c1}{get}} (\mbox{\hyperlink{classPointT}{PointT}} p)
+\begin{DoxyCompactList}\small\item\em get the color at a specific point for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} object \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoardController_a866519c46f864d0574a040f41f87fa9a}{set}} (\mbox{\hyperlink{classPointT}{PointT}} p, \mbox{\hyperlink{enumColor}{Color}} c)
+\begin{DoxyCompactList}\small\item\em set a color at a specific point for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} object \end{DoxyCompactList}\item 
+boolean \mbox{\hyperlink{classBoardController_a22e827a2c2680ad10de98e1a8a29bc9f}{validate\+Moves}} (Board\+Moves moves)
+\begin{DoxyCompactList}\small\item\em validate a sequence of input moves for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoardController_a1d02560b952d454bee41823b18982566}{update\+Board}} (Board\+Moves moves)
+\begin{DoxyCompactList}\small\item\em update a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} after eliminating a sequence of dots \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classBoardController_a25b73600493dbaeed0060b70708fe48d}\label{classBoardController_a25b73600493dbaeed0060b70708fe48d}} 
+void \mbox{\hyperlink{classBoardController_a25b73600493dbaeed0060b70708fe48d}{update\+View}} ()
+\begin{DoxyCompactList}\small\item\em print out to standard output the current state of a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoardController_a56377dbff691c9a7c9744a59b037e61c}{print\+Msg}} (String msg)
+\begin{DoxyCompactList}\small\item\em print out to standard input a string \end{DoxyCompactList}\item 
+Strategy \mbox{\hyperlink{classBoardController_a51c48b042b35ae08e2de8db4b29f6e8e}{mode\+Prompt}} ()
+\begin{DoxyCompactList}\small\item\em get a playable game mode of choice from the user through the standard input via a prompt \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoardController_a3cdfecf5ddeb895ce7ecaaa790a2a765}{close\+View\+Stream}} ()
+\begin{DoxyCompactList}\small\item\em close the input stream from the standard input \end{DoxyCompactList}\item 
+Board\+Moves \mbox{\hyperlink{classBoardController_aba854b7ed470d1f65bde1d38bc829740}{get\+Input}} ()
+\begin{DoxyCompactList}\small\item\em get a input sequence of dots to eliminate on a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} from the user via the standard input \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+controller for \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} and a \mbox{\hyperlink{classBoardView}{Board\+View}} object 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBoardController_a3513a0c88efb2a9a960cbd7785171dde}\label{classBoardController_a3513a0c88efb2a9a960cbd7785171dde}} 
+\index{BoardController@{BoardController}!BoardController@{BoardController}}
+\index{BoardController@{BoardController}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{BoardController()}{BoardController()}}
+{\footnotesize\ttfamily Board\+Controller.\+Board\+Controller (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}}}]{model,  }\item[{\mbox{\hyperlink{classBoardView}{Board\+View}}}]{view }\end{DoxyParamCaption})}
+
+
+
+constructor for \mbox{\hyperlink{classBoardController}{Board\+Controller}} 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & the \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} object to control, interact with \\
+\hline
+{\em view} & the view object to interact with \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBoardController_a3cdfecf5ddeb895ce7ecaaa790a2a765}\label{classBoardController_a3cdfecf5ddeb895ce7ecaaa790a2a765}} 
+\index{BoardController@{BoardController}!closeViewStream@{closeViewStream}}
+\index{closeViewStream@{closeViewStream}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{closeViewStream()}{closeViewStream()}}
+{\footnotesize\ttfamily void Board\+Controller.\+close\+View\+Stream (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+close the input stream from the standard input 
+
+Note\+: this is not specific to a specific instance of a \mbox{\hyperlink{classBoardController}{Board\+Controller}} object and will close the stream globally, use carefully \mbox{\Hypertarget{classBoardController_a75c1a4d2b550e3677ead994d968472c1}\label{classBoardController_a75c1a4d2b550e3677ead994d968472c1}} 
+\index{BoardController@{BoardController}!get@{get}}
+\index{get@{get}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{enumColor}{Color}} Board\+Controller.\+get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPointT}{PointT}}}]{p }\end{DoxyParamCaption})}
+
+
+
+get the color at a specific point for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point to get the color at \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the \mbox{\hyperlink{enumColor}{Color}} at point p 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoardController_aba854b7ed470d1f65bde1d38bc829740}\label{classBoardController_aba854b7ed470d1f65bde1d38bc829740}} 
+\index{BoardController@{BoardController}!getInput@{getInput}}
+\index{getInput@{getInput}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{getInput()}{getInput()}}
+{\footnotesize\ttfamily Board\+Moves Board\+Controller.\+get\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get a input sequence of dots to eliminate on a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} from the user via the standard input 
+
+\begin{DoxyReturn}{Returns}
+a sequence containing the points indicated by the user 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoardController_a51c48b042b35ae08e2de8db4b29f6e8e}\label{classBoardController_a51c48b042b35ae08e2de8db4b29f6e8e}} 
+\index{BoardController@{BoardController}!modePrompt@{modePrompt}}
+\index{modePrompt@{modePrompt}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{modePrompt()}{modePrompt()}}
+{\footnotesize\ttfamily Strategy Board\+Controller.\+mode\+Prompt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get a playable game mode of choice from the user through the standard input via a prompt 
+
+see \mbox{\hyperlink{classBoardController_a51c48b042b35ae08e2de8db4b29f6e8e}{mode\+Prompt()}} in Board\+View.\+java for more information \begin{DoxyReturn}{Returns}
+the game mode the user wants to play 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoardController_a56377dbff691c9a7c9744a59b037e61c}\label{classBoardController_a56377dbff691c9a7c9744a59b037e61c}} 
+\index{BoardController@{BoardController}!printMsg@{printMsg}}
+\index{printMsg@{printMsg}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{printMsg()}{printMsg()}}
+{\footnotesize\ttfamily void Board\+Controller.\+print\+Msg (\begin{DoxyParamCaption}\item[{String}]{msg }\end{DoxyParamCaption})}
+
+
+
+print out to standard input a string 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & the string to print out \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBoardController_a866519c46f864d0574a040f41f87fa9a}\label{classBoardController_a866519c46f864d0574a040f41f87fa9a}} 
+\index{BoardController@{BoardController}!set@{set}}
+\index{set@{set}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void Board\+Controller.\+set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPointT}{PointT}}}]{p,  }\item[{\mbox{\hyperlink{enumColor}{Color}}}]{c }\end{DoxyParamCaption})}
+
+
+
+set a color at a specific point for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} object 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & The point to set the color at \\
+\hline
+{\em c} & the color to set \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBoardController_a1d02560b952d454bee41823b18982566}\label{classBoardController_a1d02560b952d454bee41823b18982566}} 
+\index{BoardController@{BoardController}!updateBoard@{updateBoard}}
+\index{updateBoard@{updateBoard}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{updateBoard()}{updateBoard()}}
+{\footnotesize\ttfamily void Board\+Controller.\+update\+Board (\begin{DoxyParamCaption}\item[{Board\+Moves}]{moves }\end{DoxyParamCaption})}
+
+
+
+update a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} after eliminating a sequence of dots 
+
+See update\+Board in \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} for more information 
+\begin{DoxyParams}{Parameters}
+{\em moves} & containing the sequence of dots to eliminate \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classBoardController_a22e827a2c2680ad10de98e1a8a29bc9f}\label{classBoardController_a22e827a2c2680ad10de98e1a8a29bc9f}} 
+\index{BoardController@{BoardController}!validateMoves@{validateMoves}}
+\index{validateMoves@{validateMoves}!BoardController@{BoardController}}
+\doxysubsubsection{\texorpdfstring{validateMoves()}{validateMoves()}}
+{\footnotesize\ttfamily boolean Board\+Controller.\+validate\+Moves (\begin{DoxyParamCaption}\item[{Board\+Moves}]{moves }\end{DoxyParamCaption})}
+
+
+
+validate a sequence of input moves for a \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} 
+
+see validate\+Moves in \mbox{\hyperlink{classTwoDotsBoard}{Two\+Dots\+Board}} for more information 
+\begin{DoxyParams}{Parameters}
+{\em moves} & the sequence of moves to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean indicating is the given sequence is valid 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{BoardController_8java}{Board\+Controller.\+java}}\end{DoxyCompactItemize}

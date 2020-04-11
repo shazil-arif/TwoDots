@@ -1,0 +1,167 @@
+\hypertarget{classBoard}{}\doxysection{Board$<$ T $>$ Class Template Reference}
+\label{classBoard}\index{Board$<$ T $>$@{Board$<$ T $>$}}
+
+
+\mbox{\hyperlink{classBoard}{Board}} provides an A\+DT to represent a generic 2D board parameterized over any type.  
+
+
+
+
+Collaboration diagram for Board$<$ T $>$\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classBoard_a5ace408178002f4a7bbc22c80346fbc5}{Board}} (int row, int col)
+\begin{DoxyCompactList}\small\item\em Constructor method for \mbox{\hyperlink{classBoard}{Board}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classBoard_aa16396fb561fa98dc7454f2fe835e3ad}{set}} (\mbox{\hyperlink{classPointT}{PointT}} p, T v)
+\begin{DoxyCompactList}\small\item\em setter method for \mbox{\hyperlink{classBoard}{Board}}, get a value at a given point \end{DoxyCompactList}\item 
+T \mbox{\hyperlink{classBoard_aacda544d27d9dd05a4fed7cd805ab6bc}{get}} (\mbox{\hyperlink{classPointT}{PointT}} p)
+\begin{DoxyCompactList}\small\item\em getter method for \mbox{\hyperlink{classBoard}{Board}}, get a value at a given point \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a0b6f6cb5526bc1e6f275b78b34d4d90b}{get\+Num\+Row}} ()
+\begin{DoxyCompactList}\small\item\em getter method for the number of rows in the current \mbox{\hyperlink{classBoard}{Board}} object \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classBoard_a3912e64dcb08c004e87c2b9963c1d3f6}{get\+Num\+Col}} ()
+\begin{DoxyCompactList}\small\item\em getter method for the number of columns in the current \mbox{\hyperlink{classBoard}{Board}} object \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+boolean \mbox{\hyperlink{classBoard_a4e4623eeeb181482f1c8493ea812d36b}{valid\+Point}} (\mbox{\hyperlink{classPointT}{PointT}} p)
+\begin{DoxyCompactList}\small\item\em protected helper method to validate a \mbox{\hyperlink{classPointT}{PointT}} object. visible to the current and a child class only \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classBoard_af94d0c406b261750a599df8dbaf37ab4}\label{classBoard_af94d0c406b261750a599df8dbaf37ab4}} 
+Array\+List$<$ Array\+List$<$ T $>$ $>$ {\bfseries s}
+\item 
+\mbox{\Hypertarget{classBoard_abeae75a77392e9c9876b75b468361152}\label{classBoard_abeae75a77392e9c9876b75b468361152}} 
+int {\bfseries n\+\_\+row}
+\item 
+\mbox{\Hypertarget{classBoard_a619d7baf2654b54ecdd2f8e91cf82289}\label{classBoard_a619d7baf2654b54ecdd2f8e91cf82289}} 
+int {\bfseries n\+\_\+col}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classBoard}{Board}} provides an A\+DT to represent a generic 2D board parameterized over any type. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classBoard_a5ace408178002f4a7bbc22c80346fbc5}\label{classBoard_a5ace408178002f4a7bbc22c80346fbc5}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!Board@{Board}}
+\index{Board@{Board}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{Board()}{Board()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.\mbox{\hyperlink{classBoard}{Board}} (\begin{DoxyParamCaption}\item[{int}]{row,  }\item[{int}]{col }\end{DoxyParamCaption})}
+
+
+
+Constructor method for \mbox{\hyperlink{classBoard}{Board}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em row} & the number of rows desired in the board \\
+\hline
+{\em col} & the number of columns desired in the board\\
+\hline
+\end{DoxyParams}
+the Boards cells are not initialized to anything, only the corresponding number of rows are added 
+\begin{DoxyExceptions}{Exceptions}
+{\em Illegal\+Argument\+Exception} & if the parameter row or parameter col is less than or equal to 0 \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classBoard_aacda544d27d9dd05a4fed7cd805ab6bc}\label{classBoard_aacda544d27d9dd05a4fed7cd805ab6bc}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!get@{get}}
+\index{get@{get}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily T \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.get (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPointT}{PointT}}}]{p }\end{DoxyParamCaption})}
+
+
+
+getter method for \mbox{\hyperlink{classBoard}{Board}}, get a value at a given point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \mbox{\hyperlink{classPointT}{PointT}} object indicating the position to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value at point p 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Index\+Out\+Bounds\+Exception} & if \mbox{\hyperlink{classPointT}{PointT}} object lies outside of the \mbox{\hyperlink{classBoard}{Board}}, i.\+e the row or column lie outside of the Boards dimensions \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classBoard_a3912e64dcb08c004e87c2b9963c1d3f6}\label{classBoard_a3912e64dcb08c004e87c2b9963c1d3f6}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!getNumCol@{getNumCol}}
+\index{getNumCol@{getNumCol}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getNumCol()}{getNumCol()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.get\+Num\+Col (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+getter method for the number of columns in the current \mbox{\hyperlink{classBoard}{Board}} object 
+
+\begin{DoxyReturn}{Returns}
+the number of columns in the current \mbox{\hyperlink{classBoard}{Board}} object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_a0b6f6cb5526bc1e6f275b78b34d4d90b}\label{classBoard_a0b6f6cb5526bc1e6f275b78b34d4d90b}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!getNumRow@{getNumRow}}
+\index{getNumRow@{getNumRow}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getNumRow()}{getNumRow()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.get\+Num\+Row (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+getter method for the number of rows in the current \mbox{\hyperlink{classBoard}{Board}} object 
+
+\begin{DoxyReturn}{Returns}
+the number of rows in the current \mbox{\hyperlink{classBoard}{Board}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classBoard_aa16396fb561fa98dc7454f2fe835e3ad}\label{classBoard_aa16396fb561fa98dc7454f2fe835e3ad}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!set@{set}}
+\index{set@{set}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{set()}{set()}}
+{\footnotesize\ttfamily void \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.set (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPointT}{PointT}}}]{p,  }\item[{T}]{v }\end{DoxyParamCaption})}
+
+
+
+setter method for \mbox{\hyperlink{classBoard}{Board}}, get a value at a given point 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & \mbox{\hyperlink{classPointT}{PointT}} object indicating the position to get \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value at point p 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Index\+Out\+Bounds\+Exception} & if \mbox{\hyperlink{classPointT}{PointT}} object lies outside of the \mbox{\hyperlink{classBoard}{Board}}, i.\+e the row or column lie outside of the Boards dimensions \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classBoard_a4e4623eeeb181482f1c8493ea812d36b}\label{classBoard_a4e4623eeeb181482f1c8493ea812d36b}} 
+\index{Board$<$ T $>$@{Board$<$ T $>$}!validPoint@{validPoint}}
+\index{validPoint@{validPoint}!Board$<$ T $>$@{Board$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{validPoint()}{validPoint()}}
+{\footnotesize\ttfamily boolean \mbox{\hyperlink{classBoard}{Board}}$<$ T $>$.valid\+Point (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPointT}{PointT}}}]{p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+protected helper method to validate a \mbox{\hyperlink{classPointT}{PointT}} object. visible to the current and a child class only 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p} & the \mbox{\hyperlink{classPointT}{PointT}} object to validate \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean indicating if the column number is valid (i.\+e lies in the 2D sequence bounds) 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Board.\+java\end{DoxyCompactItemize}

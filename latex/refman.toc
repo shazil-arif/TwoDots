@@ -1,0 +1,76 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Hierarchical Index}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Class Hierarchy}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Board$<$ T $>$ Class Template Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Constructor \& Destructor Documentation}{8}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}Board()}{8}{subsubsection.4.1.2.1}%
+\contentsline {subsection}{\numberline {4.1.3}Member Function Documentation}{8}{subsection.4.1.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.1}get()}{8}{subsubsection.4.1.3.1}%
+\contentsline {subsubsection}{\numberline {4.1.3.2}getNumCol()}{9}{subsubsection.4.1.3.2}%
+\contentsline {subsubsection}{\numberline {4.1.3.3}getNumRow()}{9}{subsubsection.4.1.3.3}%
+\contentsline {subsubsection}{\numberline {4.1.3.4}set()}{9}{subsubsection.4.1.3.4}%
+\contentsline {subsubsection}{\numberline {4.1.3.5}validPoint()}{10}{subsubsection.4.1.3.5}%
+\contentsline {section}{\numberline {4.2}Board\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller Class Reference}{10}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Constructor \& Destructor Documentation}{11}{subsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.1.1}BoardController()}{11}{subsubsection.4.2.1.1}%
+\contentsline {subsection}{\numberline {4.2.2}Member Function Documentation}{11}{subsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.1}closeViewStream()}{11}{subsubsection.4.2.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2.2}get()}{11}{subsubsection.4.2.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.2.3}getInput()}{12}{subsubsection.4.2.2.3}%
+\contentsline {subsubsection}{\numberline {4.2.2.4}modePrompt()}{12}{subsubsection.4.2.2.4}%
+\contentsline {subsubsection}{\numberline {4.2.2.5}printMsg()}{12}{subsubsection.4.2.2.5}%
+\contentsline {subsubsection}{\numberline {4.2.2.6}set()}{12}{subsubsection.4.2.2.6}%
+\contentsline {subsubsection}{\numberline {4.2.2.7}updateBoard()}{13}{subsubsection.4.2.2.7}%
+\contentsline {subsubsection}{\numberline {4.2.2.8}validateMoves()}{13}{subsubsection.4.2.2.8}%
+\contentsline {section}{\numberline {4.3}Board\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View Class Reference}{13}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Detailed Description}{14}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Member Function Documentation}{14}{subsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.1}getInput()}{14}{subsubsection.4.3.2.1}%
+\contentsline {subsubsection}{\numberline {4.3.2.2}modePrompt()}{14}{subsubsection.4.3.2.2}%
+\contentsline {subsubsection}{\numberline {4.3.2.3}printBoard()}{14}{subsubsection.4.3.2.3}%
+\contentsline {subsubsection}{\numberline {4.3.2.4}printMsg()}{15}{subsubsection.4.3.2.4}%
+\contentsline {section}{\numberline {4.4}Color Enum Reference}{15}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Dots Class Reference}{15}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}End Class Reference}{16}{section.4.6}%
+\contentsline {section}{\numberline {4.7}PointT Class Reference}{16}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Detailed Description}{16}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Constructor \& Destructor Documentation}{16}{subsection.4.7.2}%
+\contentsline {subsubsection}{\numberline {4.7.2.1}PointT()}{16}{subsubsection.4.7.2.1}%
+\contentsline {subsection}{\numberline {4.7.3}Member Function Documentation}{17}{subsection.4.7.3}%
+\contentsline {subsubsection}{\numberline {4.7.3.1}col()}{17}{subsubsection.4.7.3.1}%
+\contentsline {subsubsection}{\numberline {4.7.3.2}row()}{17}{subsubsection.4.7.3.2}%
+\contentsline {section}{\numberline {4.8}Strategy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Mode Class Reference}{17}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Detailed Description}{18}{subsection.4.8.1}%
+\contentsline {section}{\numberline {4.9}Timed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Strategy Class Reference}{18}{section.4.9}%
+\contentsline {subsection}{\numberline {4.9.1}Detailed Description}{18}{subsection.4.9.1}%
+\contentsline {section}{\numberline {4.10}Two\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dots\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Board Class Reference}{18}{section.4.10}%
+\contentsline {subsection}{\numberline {4.10.1}Detailed Description}{19}{subsection.4.10.1}%
+\contentsline {subsection}{\numberline {4.10.2}Constructor \& Destructor Documentation}{19}{subsection.4.10.2}%
+\contentsline {subsubsection}{\numberline {4.10.2.1}TwoDotsBoard()}{19}{subsubsection.4.10.2.1}%
+\contentsline {subsection}{\numberline {4.10.3}Member Function Documentation}{19}{subsection.4.10.3}%
+\contentsline {subsubsection}{\numberline {4.10.3.1}updateBoard()}{19}{subsubsection.4.10.3.1}%
+\contentsline {subsubsection}{\numberline {4.10.3.2}validateMoves()}{20}{subsubsection.4.10.3.2}%
+\contentsline {chapter}{\numberline {5}File Documentation}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Board\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Controller.java File Reference}{21}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Detailed Description}{21}{subsection.5.1.1}%
+\contentsline {section}{\numberline {5.2}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dots.java File Reference}{21}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Detailed Description}{22}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}End.java File Reference}{22}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Detailed Description}{22}{subsection.5.3.1}%
+\contentsline {section}{\numberline {5.4}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PointT.java File Reference}{22}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Detailed Description}{23}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.5}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Strategy.java File Reference}{23}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Detailed Description}{23}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.6}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Strategy\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Game\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Mode.java File Reference}{23}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Detailed Description}{24}{subsection.5.6.1}%
+\contentsline {section}{\numberline {5.7}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Timed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Strategy.java File Reference}{24}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Detailed Description}{24}{subsection.5.7.1}%
+\contentsline {section}{\numberline {5.8}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Two\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Dots\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Board.java File Reference}{24}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Detailed Description}{24}{subsection.5.8.1}%
+\contentsline {chapter}{Index}{25}{section*.25}%

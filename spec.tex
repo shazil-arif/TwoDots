@@ -1,0 +1,1010 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{url}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+\lstset{
+  basicstyle=\ttfamily,
+  mathescape
+}
+
+\oddsidemargin -10mm
+\evensidemargin -10mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+%% Comments
+
+\usepackage{color}
+
+\newif\ifcomments\commentstrue
+
+\ifcomments
+\newcommand{\authornote}[3]{\textcolor{#1}{[#3 ---#2]}}
+\newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+\newcommand{\authornote}[3]{}
+\newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\wss}[1]{\authornote{blue}{SS}{#1}}
+
+\title{Assignment 4, Two Dots game Specification}
+\author{SFWR ENG 2AA4}
+
+\begin {document}
+
+\maketitle
+This Module Interface Specification (MIS) document contains interfaces,ADT's and
+methods for implementing a game of Two Dots. Some modules and notation were borrowed from the A3 specification and all credit goes to it. The specification is generally formal but contains some informal parts for specifying for example; output to a screen, starting a timer and describing a iterative method which has no output. The strategy pattern was used in the Strategy interface and the classes that inherit it for different game modes. The singleton pattern was followed for the Timer module and MVC was used throughout to structure the interface of the application and to seperate concerns. A full MIS of the View and Controller is also provided. Comments are provided in the ``Considerations'' section at the end of each module where appropriate to clarify any misunderstandings and ambiguities.
+
+\newpage
+
+\section* {Color Module}
+
+\subsection*{Module}
+
+Color
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Types}
+
+Color = \{R, G, B, P, Y\}\\
+
+\noindent \textit{//R stands for Red, G for green, B for blue, P for
+  Purple, Y for yellow}
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{5cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+randomColor &  & Color & ~\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+colors: Color
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent randomColor():
+\begin{itemize}
+\item transition: none
+\item output: $out :=$ randomVal()
+\item exception: none
+\end{itemize}
+
+
+\subsection*{Local Functions}
+
+\noindent randomVal(): Color\\
+\noindent randomVal() $\equiv (i = 0 \implies $R $| i = 1 \implies$ G $| i = 2 \implies$ B $| i = 3 \implies$ P $| i = 4 \implies$ Y ) 
+Where $i$ is a uniformly-distributed random number in the range $0 \leq i \leq 4$ \\
+
+\newpage
+
+\section* {Point ADT Module}
+
+\subsection*{Template Module}
+
+PointT
+
+\subsection* {Uses}
+
+N/A
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+\textcolor{blue}{PointT = ?}
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+PointT & $\mathbb{Z}$, $\mathbb{Z}$ & PointT & \\
+\hline
+row & ~ & $\mathbb{Z}$ & ~\\
+\hline
+col & ~ & $\mathbb{Z}$ & ~\\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$r$: \textcolor{blue}{$\mathbb{Z}$}\\
+$c$: \textcolor{blue}{$\mathbb{Z}$}\\
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+The constructor PointT is called for each object instance before any other
+access routine is called for that object.  The constructor cannot be called on
+an existing object.
+
+\subsubsection* {Access Routine Semantics}
+
+PointT($row, col$):
+\begin{itemize}
+\item transition: \textcolor{blue}{$r := row, c := col$}
+
+\item output: $out := \mathit{self}$
+\item exception: None
+\end{itemize}
+
+\noindent row():
+\begin{itemize}
+\item output: $out := r$
+\item exception: None
+\end{itemize}
+
+\noindent col():
+\begin{itemize}
+\item \textcolor{blue}{output: $out := c$}
+\item exception: None
+\end{itemize}
+
+\newpage
+
+\section* {Generic Board Module}
+
+\subsection* {Generic Template Module}
+
+Board(T)
+
+\subsection* {Uses}
+
+PointT
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Types}
+
+Board(T) = ?
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+Board & $\mathbb{N},\mathbb{N}$ & Board & IllegalArgumentException\\
+\hline
+set & PointT, T & ~ & IndexOutOfBoundsException\\
+\hline
+get & PointT & T & IndexOutOfBoundsException\\
+\hline
+getNumRow & ~ & $\mathbb{N}$ & \\
+\hline
+getNumCol & ~ & $\mathbb{N}$ & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {State Variables}
+
+$s$: seq of (seq of T)\\
+nRow: $\mathbb{N}$\\
+nCol: $\mathbb{N}$
+
+\subsubsection* {State Invariant}
+
+None
+
+\subsubsection* {Assumptions}
+
+\begin{itemize}
+\item The Board(T) constructor is called for each object instance before any
+other access routine is called for that object.  The constructor can only be
+called once.
+\item $s[i][j]$ means the ith row and the jth column.  The 0th row is at the top of the grid and the 0th column is at the leftmost side of the grid.
+\end{itemize}
+
+\subsubsection* {Access Routine Semantics}
+
+Board($row$, $col$):
+\begin{itemize}
+\item \textcolor{blue}{transition (note that the list does not enforce an \emph{order} in which the transitions occur, only the transitions that must occur): \begin{enumerate} \item $nRow := row$ \item $nCol := col$\end{enumerate}}
+
+\item output: $\mathit{out} := \mathit{self}$
+\item \textcolor{blue}{exception: \\
+exc $:=$ (row $\leq$ 0) $\lor$ (col $\leq$ 0) $\implies$ IllegalArgumentException}
+\end{itemize}
+
+\noindent set($p, v$):
+\begin{itemize}
+\item transition: \textcolor{blue}{$s[p.row()][p.col()] = v$}
+\item exception:\\ \textcolor{blue}{$\lnot$ validPoint(p)$\implies$ IndexOutOfBoundsException}
+\end{itemize}
+
+\noindent get($p$):
+\begin{itemize}
+\item output: \textcolor{blue}{$out := s[p.row()][p.col()]$}
+\item exception:\\ \textcolor{blue}{$\lnot$ validPoint(p)$\implies$ IndexOutOfBoundsException}
+\end{itemize}
+
+\noindent getNumRow():
+\begin{itemize}
+\item output: $out := \mbox{nRow}$
+\item exception: None
+\end{itemize}
+
+\noindent getNumCol():
+\begin{itemize}
+\item output: $out := \mbox{nCol}$
+\item exception: None
+\end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent validRow: $\mathbb{N} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validRow($r$) $\equiv r \geq 0 \land (r < $ nRow)} \\
+
+\noindent validCol: $\mathbb{N} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validCol($c$) $\equiv (c \geq 0) \land (c < $ nCol)} \\
+
+
+\noindent validPoint: $\mbox{PointT} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validPoint($p$) $\equiv$ validCol(p.col()) $\land$ validRow(p.row())}
+
+\newpage
+
+\section* {BoardMoves Module}
+
+\subsection* {Template Module}
+
+\noindent \textcolor{blue}{BoardMoves is seq of PointT}
+
+\subsubsection* {Considerations}
+When implementing in Java. Extend Arraylist parameterized by the type PointT
+
+
+\newpage
+
+\section* {TwoDotsBoard Module}
+
+\subsection* {Template Module}
+
+\noindent \textcolor{blue}{TwoDotsBoard is Board(Color)}
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+validateMoves & BoardMoves & $\mathbb{B}$& \\
+\hline
+updateBoard & BoardMoves &  & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent validateMoves(b): 
+\begin{itemize}
+\item \textcolor{blue}{output : out $:= |b| > 1$  $\land$  $\forall ( p : PointT$ $|$ $p$ $\in $b : validPoint(p)$) \land validPath(b) \land isDistinct(b)$}
+\item exception: None
+\end{itemize}
+
+\noindent updateBoard(b): 
+\begin{itemize}
+\item \textcolor{blue}{output : out $ := $ None}
+\item \textcolor{blue}{transition : s $ := \forall (p : PointT | p \in b  \forall(i : \mathbb{N} | i \in [p.row()..1]) : s[i][p.col()] := $ randomColor() ) }
+\item exception: None
+\end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent validRow: $\mathbb{N} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validRow($r$) $\equiv r \geq 0 \land (r < $ nRow)} \\
+
+\noindent validCol: $\mathbb{N} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validCol($c$) $\equiv (c \geq 0) \land (c < $ nCol)} \\
+
+
+\noindent validPoint: $\mbox{PointT} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validPoint($p$) $\equiv$ validCol(p.col()) $\land$ validRow(p.row())}\\
+
+\noindent isDistinct: BoardMoves $\rightarrow \mathbb{B}$\\
+\noindent isDistinct($b$) $\equiv$ $\forall(i : \mathbb{N}| i \in [0..|b|-1] : \forall (j : \mathbb{N} | j \in [(i+1)..|b|-1]) : \lnot (b[i].row() = b[j].row()) \land (b[i].col() = b[j].col()) )$  \\
+
+
+\noindent validPath: $\mbox{BoardMoves} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{validPath($b$) $\equiv \forall(i : \mathbb{N} | i \in [0..|b|-2] : isAdjacent(b,i,i+1) \land sameColor(b,i,i+1)) $}\\
+ 
+\noindent sameColor : BoardMoves $\times \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{B} $\\
+\noindent sameColor($b,i,j$) $\equiv s[b[i].row()][b[i].col()] = s[b[j].row()][b[j].col()]$\\
+
+\noindent isAdjacent: BoardMoves $\times \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{B}$\\
+\noindent \textcolor{blue}{isAdjacent($b,i,j$) $\equiv b[i].row() = b[j].row() \land b[i].col() = b[j].col() + 1$\\
+$\lor$  $b[i].row() = b[j].row() \land b[i].col() = b[j].col() - 1$\\
+$\lor$  $b[i].row() = b[j].row() - 1 \land b[i].col() = b[j].col()$\\
+$\lor$  $b[i].row() = b[j].row() + 1 \land b[i].col() = b[j].col()$ }\\
+
+\subsection*{Considerations}
+\noindent In Java, calling randomColor() represents a call to a static function so it would actually be done as Color.randomColor()
+
+
+\newpage
+
+\section* {Strategy Interface Module}
+
+\subsection* {Interface Module}
+
+\noindent {Strategy}
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported types}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+play & TwoDotsBoard & & \\
+\hline
+\end{tabular}
+
+\newpage
+
+\section* {BoardView Module}
+
+\subsection* {Template Module}
+
+\noindent \textcolor{blue}{BoardView}
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+printBoard & TwoDotsBoard & $\mathbb{B}$& \\
+\hline
+modePrompt &  & Strategy & \\
+\hline
+getInput &  & BoardMoves & \\
+\hline
+closeStream &  &  & \\
+\hline
+printMsg & $msg : string$ &  & \\
+\hline
+
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment variables}
+\noindent $s$ : 2D sequence of pixels displayed on a standard Unix Shell/console\\
+\noindent $r$ : an object to write text out on a standard Unix Shell/console\\
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent printBoard($b$): 
+\begin{itemize}
+\item transition $s:=$ Modify the Console so that the TwoDotsBoard b is printed in a tabular manner. The contents of each row from $b$ should
+be on individual line. Their should be horizontal and vertical numbering indicating each row and column from one upto and including the row and column size of the board
+\item exception: None
+\end{itemize}
+
+\noindent modePrompt(): 
+\begin{itemize}
+\item transition :
+\begin{itemize}
+\item $s:=$ Modify the console to print a message asking the user to enter ``T'' for the timed version of the game and ``M'' for the mode of the game with a set number of moves
+\item $r$:= read a single line of text from the standard input. Store this value in memory and then determine what to output as follows:\\
+If the line read in is ``T'' or ``t'' output : out $ := $ new TimedStrategy()\\
+If the line read in is ``M'' or ``m'' output: out $ := $ new MovesStrategy()\\
+Otherwise keep reading a line from the standard input until one of the above two conditions are met
+\end{itemize}
+\item exception: None
+\end{itemize}
+
+\noindent getInput(): 
+\begin{itemize}
+\item transition :
+\begin{itemize}
+\item $r$:= read a single line of text from the standard input to determine the coordinates of the dots the user would like to eliminate.
+Note that the desired input format is u,v w,x y,z .... These are pairs of natural numbers with a comma between them and each pair is separated by a space. Store this value in memory and then determine what to output as follows:\\
+If the line read in is in the correct format then $output: out :=$ new BoardMoves() containing the pairs of integers\\
+Otherwise keep reading a line from the standard input until one of the above conditions are met
+\end{itemize}
+\end{itemize}
+
+\noindent closeStream(): 
+\begin{itemize}
+\item transition : $s$:= close the input stream
+\end{itemize}
+
+\noindent printMsg($msg : string$): 
+\begin{itemize}
+\item transition : $s$:= Modify the output console to print out text contain in the string $msg$
+\end{itemize}
+
+\subsection* {Considerations}
+\noindent In java, closing the input stream corresponds to closing the System.in object
+
+
+\newpage
+
+\section* {BoardController Module}
+
+\subsection* {Template Module}
+
+\noindent {BoardController}
+
+\subsection* {Uses}
+
+TwoDotsBoard, BoardView, Color, PointT, BoardMoves
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+BoardController & TwoDotsBoard, BoardView & BoardController& \\
+\hline
+get & PointT & Color & \\
+\hline
+set & PointT, Color &  & \\
+\hline
+validateMoves & BoardMoves & $\mathbb{B}$ & \\
+\hline
+updateBoard & BoardMoves &  & \\
+\hline
+updateView &   &  & \\
+\hline
+printMsg & $msg : string$ &  & \\
+\hline
+modePrompt &  & Strategy & \\
+\hline
+closeViewStream &  &  & \\
+\hline
+getInput &  & BoardMoves & \\
+\hline
+
+\end{tabular}
+
+\subsection* {Semantics}
+
+
+\subsubsection* {State variables}
+\noindent $m$ : TwoDotsBoard
+\noindent $v$ : BoardView
+
+
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+
+\noindent BoardController($model$,$view$)
+\begin{itemize} 
+\item output: out := self
+\item transition: $m:=$ model, $v:=$ view
+\item exceptions: none
+\end{itemize}
+
+\noindent get(p)
+\begin{itemize}
+\item output : $out := $ m.get(p)
+\item transition: none
+\item exceptions: none
+\end{itemize}
+
+\noindent set(p,c)
+\begin{itemize}
+\item transition: m.set(p,c)
+\item exception : none
+\end{itemize}
+
+\noindent validateMoves(b)
+\begin{itemize}
+\item output : $out := $ m.validateMoves(b)
+\end{itemize}
+
+\noindent updateBoard(b)
+\begin{itemize}
+\item transition: m.updateBoard(b)
+\end{itemize}
+
+\noindent updateView()
+\begin{itemize}
+\item transition: v.printBoard(m)
+\end{itemize}
+
+\noindent printMsg($msg : string$): 
+\begin{itemize}
+\item transition view.printMsg($msg$)
+\end{itemize}
+
+
+\noindent modePrompt(): 
+\begin{itemize}
+\item output: $out := $ v.modePrompt()
+\end{itemize}
+
+\noindent closeViewStream(): 
+\begin{itemize}
+\item transition :v.closeStream()
+\end{itemize}
+
+
+\noindent getInput(): 
+\begin{itemize}
+\item output: if (m.validateMoves(v.getInput())) then $out:=$ else $out :=$ getInput()
+\end{itemize}
+
+
+\newpage
+
+\section* {StrategyGameMode Module}
+
+\subsection* {Template Module inherits Strategy}
+
+\noindent {StrategyGameMode}
+
+\subsection*{Uses}
+Strategy, BoardView, BoardController, BoardMoves, TwoDotsBoard
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+play & TwoDotsBoard & & \\
+\hline
+startUp & TwoDotsBoard & & \\
+\hline
+checkWin & & $\mathbb{B}$ & \\
+\hline
+canContinue &  & $\mathbb{B}$ & \\
+\hline
+updateData &  & & \\
+\hline
+introMsg & & & \\
+\hline
+endMsg & & & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+
+\subsubsection* {State variables}
+\noindent $c$ : BoardController\\
+\noindent $v$ : BoardView\\
+\noindent $moves$ : BoardMoves\\
+
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent play(b)
+\begin{itemize}
+\item transition: 
+\begin{itemize}
+\item startUp(b)
+\item introMsg()
+\item if canContinue() then:
+\begin{itemize}
+\item c.updateView()
+\item c.updateBoard(c.getInput())
+\item if checkWin() then 
+\item updateData()
+\item if canContinue() then repeat these steps labeled with $*$
+\end{itemize} 
+\end{itemize}
+\end{itemize}
+
+\subsection* {Consideration}
+\noindent In Java, this module would be implemented as an abstract class that implements the Strategy interface. Unimplemented methods are ones that are abstract methods and will be overridden by its children\\
+\noindent This is the best that could be done to convey the idea of a ``abstract class'' given that MIS does not have the notion of an abstract class, following Dr Smith's advice to use Inheritance and leave a note for reader. Source: \href{https://avenue.cllmcmaster.ca/d2l/le/296632/discussions/threads/1286234/View?groupFilterOption=0&searchText=abstract} {Here (will have to login to avenue)}
+
+\newpage
+
+\section* {MovesStrategy Module}
+
+\subsection* {Template Module inherits StrategyGameMode}
+
+\noindent {MovesStrategy}
+
+\subsection*{Uses}
+StrategyGameMode, BoardView, BoardController, BoardMoves, TwoDotsBoard
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+play & TwoDotsBoard & & \\
+\hline
+startUp & TwoDotsBoard & & \\
+\hline
+checkWin & & $\mathbb{B}$ & \\
+\hline
+canContinue &  & $\mathbb{B}$ & \\
+\hline
+updateData &  & & \\
+\hline
+introMsg & & & \\
+\hline
+endMsg & & & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment variables}
+
+
+\subsubsection* {State variables}
+\noindent $moveCount$ : $\mathbb{N}$\\
+\noindent $TARGET$ : $\mathbb{N}$\\
+
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent startUp(b)
+\begin{itemize}
+\item transition: $v,c,moveCount,TARGET :=$  new BoardView(), new BoardController($b,v$), 15, 5 
+\end{itemize}
+
+
+\noindent checkWin()
+\begin{itemize}
+\item transition: if $|moves| < TARGET$ then $moves := moves - 1$
+ \item outupt: $out :=$ if $|moves| >= TARGET$ then $out := true$ else $out := false$
+\end{itemize}
+
+\noindent canContinue()
+\begin{itemize}
+\item output: $out := moveCount > 0$
+\end{itemize}
+
+
+\noindent updateData()
+\begin{itemize}
+\item transition: if $moveCount = 0$ then c.exit() \\
+else $c := $ using c.printMsg(), modify the screen to print out how many moves are left, i.e print the value of $moveCount$
+\end{itemize}
+
+
+\noindent introMsg()
+\begin{itemize}
+\item transition: $c :=$ using c.printMsg(), modify the screen to print a message to state the rules. This includes instruction for how to enter input, how to win and how many total moves the user has
+\end{itemize}
+
+\noindent endMsg()\\
+\noindent transition: $c :=$ using c.printMsg(), modify the screen by printing a message telling the user the game is over
+
+
+\newpage
+
+\section* {CountDownTimer Module}
+
+\subsection* {Module}
+
+\noindent {CountDownTimer}
+
+\subsection*{Uses}
+None
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+newTimer & $\mathbb{Z}$ & & IllegalArgumentException \\
+\hline
+isCancelled &  & $\mathbb{B}$ & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment variables}
+\noindent $t$ : Represents the system clock\\
+
+
+
+\subsubsection* {State variables}
+\noindent $cancelled$ : $\mathbb{B}$\\
+\noindent $multiplier$ : $\mathbb{Z}$\\
+
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent newTimer(time : $\mathbb{Z}$)
+\begin{itemize}
+\item transition: $cancelled := false$\\
+$multiplier := 1000$\\
+$t := $ Use the system clock to start tracking the current time. Once time*multiplier amount of time has passed then the transition $cancelled := true$ happens\\
+\item exception: $exc := $ time $< 1 \implies$ IllegalArgumentException
+\end{itemize}
+
+\noindent isCancelled()
+\begin{itemize}
+\item output: $out := \lnot cancelled$
+\end{itemize}
+
+\newpage
+
+\section* {TimedStrategy Module}
+
+\subsection* {Template Module inherits StrategyGameMode}
+
+\noindent {TimedStrategy}
+
+\subsection*{Uses}
+Strategy, BoardController, StrategyGameMode, CountDownTimer
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+play & TwoDotsBoard & & \\
+\hline
+startUp & TwoDotsBoard & & \\
+\hline
+checkWin & & $\mathbb{B}$ & \\
+\hline
+canContinue &  & $\mathbb{B}$ & \\
+\hline
+updateData &  & & \\
+\hline
+introMsg & & & \\
+\hline
+endMsg & & & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment variables}
+\noindent $t$ : Represents the system clock\\
+
+
+
+\subsubsection* {State variables}
+\noindent $TARGET$ : $\mathbb{Z}$\\
+\noindent $TIME$ : $\mathbb{Z}$\\
+
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent startUp(b)
+\begin{itemize}
+\item transition: $v,c,moveCount,TARGET,TIME :=$  new BoardView(), new BoardController($b,v$), 5, 60\\
+newTimer(TIME) 
+\end{itemize}
+
+
+\noindent checkWin()
+\begin{itemize}
+\item output: $out := |moves| >= TARGET$
+\end{itemize}
+
+\noindent canContinue()
+\begin{itemize}
+\item output: $out := $ isCancelled()
+\end{itemize}
+
+
+\noindent updateData()
+\begin{itemize}
+\item transition: $c := $ using c.printMsg(), modify the screen to print out how much time has elapsed since the start of the game. Formally, print out $t.now() - TIME$
+\end{itemize}
+
+
+\noindent introMsg()
+\begin{itemize}
+\item transition: $c :=$ using c.printMsg(), modify the screen to print a message to state the rules. This includes instruction for how to enter input, how to win and how much time the user has
+\end{itemize}
+
+\noindent endMsg()\\
+\noindent transition: $c :=$ using c.printMsg(), modify the screen by printing a message telling the user the game is over
+
+\subsection*{Consideration}
+\noindent When calling methods such as newTimer() and isCancelled() these are references to the access programs defined in CountDownTimer module. In java these would static access program and would be accessed without creating an instance of the module. Also assume $t.now()$ gives the current time in seconds
+
+\newpage
+
+\section* {Dots Module}
+
+\subsection* {Module}
+
+\noindent {Dots}
+
+\subsection*{Uses}
+Strategy, BoardController, TwoDotsBoard, BoardView
+
+\subsection* {Syntax}
+
+\subsubsection* {Exported Constants}
+
+None
+
+\subsubsection* {Exported Access Programs}
+
+\begin{tabular}{| l | l | l | p{6cm} |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+main & seq of $string$ & & \\
+\hline
+\end{tabular}
+
+\subsection* {Semantics}
+
+\subsubsection* {Environment variables}
+None
+
+\subsubsection* {State variables}
+None
+
+\subsubsection*{State invariant}
+\noindent None
+
+\subsubsection* {Access Routine Semantics}
+
+\noindent main($args$ : seq of $string$):\\
+\noindent transition:\\
+new BoardController(new TwoDotsBoard(6,6), new BoardView()).modePrompt().play(new TwoDotsBoard(6,6))
+
+\subsection*{Considerations}
+The main role of this module, in terms of implementation is to instantiate the controller, start the desired mode the user wants and then play the game while manipulating the board and interacting with the user via the controller.
+
+\newpage
+
+\section*{Discussion Question}
+\subsection*{Critique of design}
+\begin{enumerate}
+\item Consistency: 
+
+\item Essentiality: In general I believe the design provided is essential for all the modules. However, essentially becomes more difficult to achieve the more complex a design becomes. To maintain essentiallity in all of the modules I did my best to modularize the design. Splitting different concerns of the game into different modules, ADT's and abstract objects. However, there are some parts of the design that are not essential and could be improved. 
+
+\item Generality: The MIS/Interface design is general. For example, the PointT class can represent any point in 2D space not just a point on a TwoDotsBoard. The Board module is a general purpose 2D grid that can be customized with any dimensions and has some useful and general access programs that one may want to use on a 2D grid. The StrategyGameMode is also very general. It defines a very high level iterative process for playing a game of TwoDots, along with several abstract/template methods to check conditions as the game is played. When looked at it more closely the StrategyGameMode can be adopted to many different games, not just TwoDots. Any game that has a set number of moves, time or other conditions can be created by inheriting the StrategyGameMode module. 
+
+\item Minimality: In general, I tried to keep all modules minimal and address only a single concern. Most of the modules are minimal and do not offer more than one service, however there are a few exception and this is the challenge with designing a large system while maintaining such qualities. One example of a function that returns a value and has a potential state transition depending on a boolean condition is the checkWin() method in MovesStrategy module. This module return whether the user just eliminated 5 or more dots in move. However, if the user did not achieve this target then the state variable ``moves'' counter is decremented and then the function return false. So, here we have a state transition and a output thus not minimal. In the future, to make this minimal this can be achieved by splitting the function into two functions. One that checks the winning condition only and another that decrements the ``moves'' variable only.
+
+\item Cohesion: In general, all the modules have high cohesion. Every module only has methods and data structures/types that are related. For example the Color module has a enum for colors as well as a access program to produce a random color. This function does not belong anywhere else.
+
+\item Information hiding: I have kept the inner working details of my modules as encapsulated as possible. For example in my TwoDotsBoard module there are getter methods for the row and column. The randomColor() function is described as general as possible giving the flexbility of being implemented in any way. Same goes for the BoardView and CountDownTimer modules. These describe at a high level what should be outputted to the screen and how the timer should operate. In terms, of Java the timer may be implemented using the System.nanoTime() or other functions provided in System to access time or it may be done using the Timer class and set a Timer in the background as the game plays. The MIS, abstracts this all way and only requires a isCancelled() method to indicate whether a required amount of time has past or not.
+
+
+\subsection*{Design Patterns}
+\subsubsection*{Proxy Pattern}
+\noindent The proxy pattern is used when we want to provide a client with certain functionality/services but we do not want them to have direct access to our software/modules/code. This may due to a potential security risk or simply or it just may not be a good choice to have direct access. We introduce in a ``middle'' man that communicates with our client and software. It takes the clients requests gets the data from our software and gives it back to the client. This is particularly useful in the development of modern Web Services, specifically RESTful API's. A company exposes a Web API available that offers HTTP endpoints for requesting data for example. Instead of giving client direct access to their database, a client makes a request to the API ,the API retrieves the info from the database and sends the results to the client. 
+\subsection*{Strategy Design Pattern}
+\noindent The strategy design pattern is generally used to encapsulate a family of different algorithms/objects that have some common behavior/attributes but also have some difference. This two dots game is a good example. The Timed version and the version with a set number of moves is very similar. The game plays exactly the same way except our winning condition is different for each. The strategy design pattern address's this issue by defining a interface with generic methods to replicate a similar process. For two different game modes we may have a play() method defined in a interface. Then a class can inherit this interface and implement the play() method. The game play is identical for both modes so we can write code to simulate the playing of the game and introduce a method checkWin() to check the winning condition. Then two additional classes, one for each game mode can inherit this class and have a unique implementation of checkWin(). This way we reduce code duplication and use modularity to encapsulate a family of closely related objects. Both modes inherit from one interface so they both have a play method
+
+\subsection*{Adapter Pattern}
+
+
+\end{enumerate}
+\end {document}
