@@ -1,7 +1,7 @@
 # TwoDots
-This is a version of Two Dots Game playable from the command line. <br/>
+This is a version of Two Dots Game playable from the command line <br/>
 <br/>
-To Start, clone the repo or download the source code.
+To Start, clone the repo or download the source code
 <br/>
 <br/>
 Run ```make``` to build the java files <br/>
